@@ -1,6 +1,6 @@
 .container.container--sm
   h1 Sign in
-  = form_with(url: books.sign_in_path, scope: :books_session) do |form|
+  = form_with(url: books.session_path, scope: :books_session) do |form|
     .form-group
       = form.label :email
       = form.email_field :email, class: "form-control", required: true, autofocus: true, autocomplete: "email"

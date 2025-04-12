@@ -1,5 +1,5 @@
 module Books
   class ApplicationController < ActionController::Base
-    include Authentication
+    include Books::Authentication
   end
 end

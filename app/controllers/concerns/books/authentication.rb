@@ -4,7 +4,8 @@ module Books
 
     included do
       before_action :require_authentication
-    helper_method :authenticated?
+      helper_method :authenticated?
+    end
 
     class_methods do
       def allow_unauthenticated_access(**options)
