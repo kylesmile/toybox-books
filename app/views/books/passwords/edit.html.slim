@@ -1,0 +1,15 @@
+.container.container--sm
+  h1 Change your password
+  = form_with(url: books.password_path, scope: :books_password) do |form|
+    = form.hidden_field :reset_password_token
+    
+    .form-group
+      = form.label :password, "New password"
+      = form.password_field :password, class: "form-control", required: true, autofocus: true, autocomplete: "new-password"
+    
+    .form-group
+      = form.label :password_confirmation, "Confirm new password"
+      = form.password_field :password_confirmation, class: "form-control", required: true, autocomplete: "new-password"
+    
+    .form-group
+      = form.submit "Change my password", class: "btn btn-primary" 

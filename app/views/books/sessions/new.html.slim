@@ -1,0 +1,16 @@
+.container.container--sm
+  h1 Sign in
+  = form_with(url: books.sign_in_path, scope: :books_session) do |form|
+    .form-group
+      = form.label :email
+      = form.email_field :email, class: "form-control", required: true, autofocus: true, autocomplete: "email"
+    
+    .form-group
+      = form.label :password
+      = form.password_field :password, class: "form-control", required: true, autocomplete: "current-password"
+    
+    .form-group
+      = form.submit "Sign in", class: "btn btn-primary"
+    
+    .mt-4
+      = link_to "Forgot your password?", books.new_password_path 
