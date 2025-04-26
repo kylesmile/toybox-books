@@ -11,6 +11,37 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[8.0].define(version: 2025_04_12_021033) do
+  create_table "books_book_list_entries", force: :cascade do |t|
+    t.integer "book_id", null: false
+    t.integer "book_list_id", null: false
+    t.datetime "read_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id", "book_list_id"], name: "index_books_book_list_entries_on_book_id_and_book_list_id"
+    t.index ["book_id"], name: "index_books_book_list_entries_on_book_id"
+    t.index ["book_list_id"], name: "index_books_book_list_entries_on_book_list_id"
+  end
+
+  create_table "books_book_lists", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "list_type", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name", "user_id"], name: "index_books_book_lists_on_name_and_user_id", unique: true
+    t.index ["user_id"], name: "index_books_book_lists_on_user_id"
+  end
+
+  create_table "books_books", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "author", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["title", "author", "user_id"], name: "index_books_books_on_title_and_author_and_user_id", unique: true
+    t.index ["user_id"], name: "index_books_books_on_user_id"
+  end
+
   create_table "books_sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "ip_address"
@@ -28,5 +59,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_12_021033) do
     t.index ["email_address"], name: "index_books_users_on_email_address", unique: true
   end
 
+  add_foreign_key "books_book_list_entries", "books_book_lists", column: "book_list_id"
+  add_foreign_key "books_book_list_entries", "books_books", column: "book_id"
+  add_foreign_key "books_book_lists", "users"
+  add_foreign_key "books_books", "users"
   add_foreign_key "books_sessions", "users"
 end
