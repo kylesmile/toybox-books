@@ -1,7 +1,7 @@
 module Books
   class BookListEntry < ApplicationRecord
-    belongs_to :book
-    belongs_to :book_list
+    belongs_to :book, class_name: "Books::Book"
+    belongs_to :book_list, class_name: "Books::BookList"
 
     validates :book, presence: true
     validates :book_list, presence: true
@@ -19,4 +19,4 @@ module Books
       errors.add(:base, "Book and book list must belong to the same user")
     end
   end
-end 
+end

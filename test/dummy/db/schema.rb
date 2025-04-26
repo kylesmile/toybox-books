@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_12_021033) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_26_000003) do
   create_table "books_book_list_entries", force: :cascade do |t|
     t.integer "book_id", null: false
     t.integer "book_list_id", null: false
@@ -61,7 +61,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_12_021033) do
 
   add_foreign_key "books_book_list_entries", "books_book_lists", column: "book_list_id"
   add_foreign_key "books_book_list_entries", "books_books", column: "book_id"
-  add_foreign_key "books_book_lists", "users"
-  add_foreign_key "books_books", "users"
-  add_foreign_key "books_sessions", "users"
+  add_foreign_key "books_book_lists", "books_users", column: "user_id"
+  add_foreign_key "books_books", "books_users", column: "user_id"
+  add_foreign_key "books_sessions", "books_users", column: "user_id"
 end

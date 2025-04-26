@@ -1,8 +1,8 @@
 module Books
   class BookList < ApplicationRecord
-    belongs_to :user
-    has_many :book_list_entries, dependent: :destroy
-    has_many :books, through: :book_list_entries
+    belongs_to :user, class_name: "Books::User"
+    has_many :book_list_entries, class_name: "Books::BookListEntry", dependent: :destroy
+    has_many :books, class_name: "Books::Book", through: :book_list_entries
 
     validates :name, presence: true
     validates :list_type, presence: true
@@ -10,4 +10,4 @@ module Books
 
     enum :list_type, read: 'read', to_read: 'to_read'
   end
-end 
+end
