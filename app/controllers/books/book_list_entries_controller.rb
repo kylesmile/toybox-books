@@ -3,15 +3,17 @@ module Books
     before_action :set_book_list
     before_action :set_entry, only: [:destroy]
 
-    def new; end
+    def new
+      @entry = @book_list.book_list_entries.build
+      @entry.build_book(user: @book_list.user)
+    end
 
     def create
       @entry = @book_list.book_list_entries.build(entry_params)
 
       if @entry.save
-        redirect_to book_list_path(@book_list)
+        head :created
       else
-        @entries = @book_list.book_list_entries.includes(:book)
         render :new, status: :unprocessable_entity
       end
     end
@@ -32,7 +34,7 @@ module Books
     end
 
     def entry_params
-      params.expect(book_list_entry: [:read_at, { book: [:title, :author] }])
+      params.expect(book_list_entry: [:read_at, { book: [:title, :author, :user_id] }])
     end
   end
 end

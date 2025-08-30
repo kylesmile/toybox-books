@@ -1,6 +1,7 @@
 module Books
   class BookListEntry < ApplicationRecord
     before_create :find_existing_book
+    after_create :broadcast_book_list_update
 
     belongs_to :book, class_name: "Books::Book"
     belongs_to :book_list, class_name: "Books::BookList"
@@ -13,6 +14,8 @@ module Books
     validates :book_id, uniqueness: { scope: :book_list_id }, if: -> { book_list&.list_type == "to_read" }
 
     validate :book_and_list_belong_to_same_user
+
+    validates_associated :book
 
     def book=(attributes_or_instance)
       return super if attributes_or_instance.is_a?(Book)
@@ -32,6 +35,12 @@ module Books
       return if book.user_id == book_list.user_id
 
       errors.add(:base, "Book and book list must belong to the same user")
+    end
+
+    def broadcast_book_list_update
+      Turbo.with_request_id(SecureRandom.uuid) do
+        book_list.broadcast_refresh
+      end
     end
   end
 end

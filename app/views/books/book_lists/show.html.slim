@@ -1,8 +1,10 @@
+= turbo_stream_from @book_list
 = link_to "Back to Lists", book_lists_path, class: "btn btn-secondary mb-4"
 
 h1 = @book_list.name
 
 = turbo_frame_tag @book_list, src: new_book_list_entry_path(@book_list)
+  = render template: 'books/book_list_entries/new'
 
 table.table
   thead

@@ -8,7 +8,9 @@ module Books
     end
 
     def show
-      @entries = @book_list.book_list_entries.includes(:book)
+      @entries = @book_list.book_list_entries.order(created_at: :desc).includes(:book)
+      @entry = @book_list.book_list_entries.build
+      @entry.build_book(user: @book_list.user)
     end
 
     def new
