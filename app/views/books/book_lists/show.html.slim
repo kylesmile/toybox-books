@@ -1,0 +1,26 @@
+= link_to "Back to Lists", book_lists_path, class: "btn btn-secondary mb-4"
+
+h1 = @book_list.name
+
+= turbo_frame_tag @book_list, src: new_book_list_entry_path(@book_list)
+
+table.table
+  thead
+    tr
+      th Title
+      th Author
+      - if @book_list.read?
+        th Date Read
+  tbody
+    - if @entries.any?
+        - @entries.each do |entry|
+          tr
+            td = entry.book.title
+            td = entry.book.author
+            - if @book_list.read?
+              td = l(entry.read_at.to_date)
+          / = button_to "Remove", books_book_list_entry_path(@book_list, entry), method: :delete, class: "btn btn-sm btn-danger", data: { confirm: "Are you sure?" }
+    - else
+      tr
+        td colspan="3"
+          | No books in this list yet.

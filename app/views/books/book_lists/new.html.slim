@@ -1,0 +1,18 @@
+h1 New Book List
+
+= form_with model: @book_list, url: books_book_lists_path, local: true do |f|
+  .mb-3
+    = f.label :name, class: "form-label"
+    = f.text_field :name, class: "form-control"
+    - if @book_list.errors[:name].any?
+      .invalid-feedback.d-block = @book_list.errors[:name].join(", ")
+
+  .mb-3
+    = f.label :list_type, class: "form-label"
+    = f.select :list_type, [["To Read", "to_read"], ["Read", "read"]], {}, class: "form-select"
+    - if @book_list.errors[:list_type].any?
+      .invalid-feedback.d-block = @book_list.errors[:list_type].join(", ")
+
+  .mb-3
+    = f.submit "Create Book List", class: "btn btn-primary"
+    = link_to "Cancel", books_book_lists_path, class: "btn btn-secondary ms-2" 

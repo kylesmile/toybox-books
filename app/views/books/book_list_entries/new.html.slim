@@ -1,0 +1,10 @@
+= turbo_frame_tag @book_list do
+  = simple_form_for @book_list.book_list_entries.build, url: book_list_entries_path(@book_list), class: 'flex items-end gap-md' do |f|
+    = f.simple_fields_for(f.object.build_book) do |ff|
+      = ff.input :title
+      = ff.input :author
+
+    - if @book_list.read?
+      = f.input :read_at, label: 'Date Read', as: :date, value: Time.zone.today
+
+    = f.submit 'Add', class: 'btn btn--primary margin-bottom-sm'

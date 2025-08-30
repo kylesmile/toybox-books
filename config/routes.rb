@@ -2,5 +2,9 @@ Books::Engine.routes.draw do
   resources :passwords, param: :token
   resource :session
 
-  root to: "sessions#new"
+  resources :book_lists do
+    resources :book_list_entries, as: "entries", only: [:new, :create, :destroy]
+  end
+
+  root to: "book_lists#index"
 end
