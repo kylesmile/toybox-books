@@ -13,6 +13,10 @@ html data-theme-mode="light"
       .navbar
         = link_to "Books", root_path
         = yield :header
+        - if authenticated?
+          = button_to "Log out", session_path, method: :delete, class: 'btn'
+        - else
+          = link_to "Log in", new_session_path
     .app__content
       = yield
     .app__footer
