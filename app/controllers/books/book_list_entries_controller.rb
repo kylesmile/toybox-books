@@ -20,7 +20,7 @@ module Books
 
     def destroy
       @entry.destroy
-      redirect_to books_book_list_path(@book_list)
+      redirect_to book_list_path(@book_list)
     end
 
     private

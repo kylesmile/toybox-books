@@ -1,28 +1,35 @@
 = turbo_stream_from @book_list
-= link_to "Back to Lists", book_lists_path, class: "btn btn-secondary mb-4"
 
-h1 = @book_list.name
+= content_for :header do
+  / = link_to "Back to Lists", book_lists_path, class: "btn btn-secondary mb-4"
 
-= turbo_frame_tag @book_list, src: new_book_list_entry_path(@book_list)
+  .main-header
+    h1 Books #{@book_list.name}
+
+/ = turbo_frame_tag @book_list, src: new_book_list_entry_path(@book_list)
   = render template: 'books/book_list_entries/new'
 
-table.table
+table.table.table--top-of-page class=(@book_list.read? ? 'table--with-gutter' : '')
   thead
     tr
+      - if @book_list.read?
+        th.gutter-column Date Read
       th Title
       th Author
-      - if @book_list.read?
-        th Date Read
+      th
   tbody
     - if @entries.any?
         - @entries.each do |entry|
           tr
+            - if @book_list.read?
+              td.gutter-column = l(entry.read_at.to_date, format: :semi_short)
             td = entry.book.title
             td = entry.book.author
-            - if @book_list.read?
-              td = l(entry.read_at.to_date)
-          / = button_to "Remove", books_book_list_entry_path(@book_list, entry), method: :delete, class: "btn btn-sm btn-danger", data: { confirm: "Are you sure?" }
+            td.table__actions
+              = button_to "Remove", book_list_entry_path(@book_list, entry), method: :delete, class: "btn btn-sm btn-danger", data: { turbo_confirm: "Are you sure?" }
     - else
       tr
-        td colspan="3"
+        - if @book_list.read?
+          td
+        td colspan="2"
           | No books in this list yet.

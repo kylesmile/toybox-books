@@ -13,3 +13,120 @@
  *= require_tree .
  *= require_self
  */
+
+@import url('/books/reset.css');
+@import url('https://fonts.googleapis.com/css2?family=Handlee&display=swap');
+
+:root {
+  --color-vertical-rule: rgb(255 0 0 / 50%);
+  --color-horizontal-rule: rgb(0 0 255 / 50%);
+  --color-normal-text: rgb(0 0 0 / 65%);
+  --color-heading-text: rgb(0 0 0);
+}
+
+body {
+  font-family: "Handlee", cursive;
+  font-weight: 400;
+  font-style: normal;
+  color: var(--color-normal-text);
+}
+
+.paper {
+  padding: 0;
+  margin: 0;
+  background:
+    url(/books/paper.svg);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.paper__header {
+  height: 10rem;
+  border-bottom: 2px solid var(--color-horizontal-rule);
+}
+
+.paper__content {
+  background: repeating-linear-gradient(
+  rgb(0 0 0 / 0),
+  rgb(0 0 0 / 0) 2rem,
+    var(--color-horizontal-rule) 2rem,
+    var(--color-horizontal-rule) calc(2rem + 2px)
+  );
+
+  flex-grow: 1;
+}
+
+.paper__vertical-rule {
+  position: absolute;
+  left: 10rem;
+  top: 0;
+  bottom: 0;
+  width: 10px;
+  border-left: 3px solid var(--color-vertical-rule);
+  border-right: 3px solid var(--color-vertical-rule);
+}
+
+.table {
+  width: 100%;
+
+  th, td {
+    text-align: left;
+    padding: 4px;
+    padding-bottom: 0;
+  }
+
+  th {
+    color: var(--color-heading-text);
+  }
+
+  &:not(.table--with-gutter) {
+    margin-left: calc(10rem + 10px);
+  }
+
+  &.table--with-gutter {
+    th:nth-child(2), td:nth-child(2) {
+      padding-left: 12px;
+    }
+  }
+
+  &.table--top-of-page {
+    margin-top: -2rem;
+  }
+
+  .table__actions {
+    padding: 0;
+  }
+
+  .gutter-column {
+    width: 10rem;
+    text-align: right;
+    padding-right: 8px;
+  }
+}
+
+.main-header {
+  margin-left: calc(10rem + 12px);
+  display: flex;
+  justify-content: center;
+
+  h1 {
+    font-size: 36px;
+  }
+}
+
+.sticky-note {
+  position: absolute;
+  left: 30%;
+  top: 30%;
+  padding: 16px;
+  min-width: 300px;
+  min-height: 300px;
+  font-size: 24px;
+  background-color: rgb(40 240 120);
+  box-shadow: 0 3px 8px black;
+
+  background:
+    url(/books/paper.svg),
+  rgb(40 240 120);
+}

@@ -3,7 +3,7 @@ Books::Engine.routes.draw do
   resource :session
 
   resources :book_lists do
-    resources :book_list_entries, as: "entries", only: [:new, :create, :destroy]
+    resources :book_list_entries, as: "entries", only: [ :new, :create, :destroy ]
   end
 
   root to: "book_lists#index"
