@@ -1,0 +1,72 @@
+
+.sticky-note {
+  position: relative;
+  border: none;
+  padding: 0;
+  min-width: 300px;
+  min-height: 300px;
+  font-size: 24px;
+  overflow: visible;
+  box-shadow: 0 0 1px rgb(0 0 0 / 30%);
+  background: transparent;
+
+  --animation-length: 350ms;
+
+  transition:
+    display var(--animation-length) allow-discrete,
+    overlay var(--animation-length) allow-discrete,
+    opacity var(--animation-length);
+
+  opacity: 0;
+
+  &::backdrop {
+    transition: opacity var(--animation-length);
+    opacity: 0;
+  }
+
+  &[open] {
+    opacity: 1;
+
+    &::backdrop {
+      opacity: 1;
+
+      @starting-style {
+        opacity: 0;
+      }
+    }
+
+    @starting-style {
+      opacity: 0;
+    }
+  }
+
+  .sticky-note__content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    padding: 16px;
+    background:
+      url(/books/paper.svg),
+    rgb(40 240 120);
+
+    transform:
+      perspective(250px)
+      rotateX(0.5deg);
+  }
+
+  .sticky-note__shadow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    transform:
+      translateY(42px)
+      perspective(100px)
+      rotateX(1.7deg)
+      scaleY(0.8);
+
+    background-color: rgb(0 0 0 / 30%);
+    filter: blur(8px);
+  }
+}

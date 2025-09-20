@@ -22,5 +22,12 @@ html data-theme-mode="light"
     .paper__content
       = yield
     .paper__vertical-rule
-    .sticky-note
-      | Hey! Are you sure?
+    dialog#confirm.sticky-note
+      .sticky-note__shadow
+      .sticky-note__content
+        h3#confirm-title Replaced by `data-turbo-confirm` attribute
+        #confirm-body
+          p Are you sure?
+        .sticky-note__actions
+          button.confirm-cancel Cancel
+          button#confirm-accept Yes, I'm sure
