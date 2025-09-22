@@ -3,8 +3,7 @@
 = content_for :header do
   / = link_to "Back to Lists", book_lists_path, class: "btn btn-secondary mb-4"
 
-  .main-header
-    h1 Books #{@book_list.name}
+  h1 Books #{@book_list.name}
 
 / = turbo_frame_tag @book_list, src: new_book_list_entry_path(@book_list)
   = render template: 'books/book_list_entries/new'
