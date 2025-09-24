@@ -1,5 +1,6 @@
 
 .sticky-note {
+  position: relative;
   border: none;
   padding: 0;
   min-width: 300px;
@@ -8,33 +9,40 @@
   box-shadow: 0 0 1px rgb(0 0 0 / 30%);
   background: transparent;
 
-  --animation-length: 350ms;
-
-  transition:
-    display var(--animation-length) allow-discrete,
-    overlay var(--animation-length) allow-discrete,
-    opacity var(--animation-length);
-
-  opacity: 0;
-
-  &::backdrop {
-    transition: opacity var(--animation-length);
-    opacity: 0;
+  &.sticky-note--login {
+    width: 350px;
+    height: 350px;
   }
 
-  &[open] {
-    opacity: 1;
+  &.stick-note--modal {
+    --animation-length: 350ms;
+
+    transition:
+      display var(--animation-length) allow-discrete,
+      overlay var(--animation-length) allow-discrete,
+      opacity var(--animation-length);
+
+    opacity: 0;
 
     &::backdrop {
+      transition: opacity var(--animation-length);
+      opacity: 0;
+    }
+
+    &[open] {
       opacity: 1;
+
+      &::backdrop {
+        opacity: 1;
+
+        @starting-style {
+          opacity: 0;
+        }
+      }
 
       @starting-style {
         opacity: 0;
       }
-    }
-
-    @starting-style {
-      opacity: 0;
     }
   }
 
@@ -51,6 +59,10 @@
     transform:
       perspective(250px)
       rotateX(0.5deg);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   .sticky-note__shadow {

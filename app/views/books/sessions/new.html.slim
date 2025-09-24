@@ -1,13 +1,16 @@
-.container.container--sm
-  h1 Sign in
-  = form_with(url: books.session_path, scope: :books_session) do |form|
-    .form-group
-      = form.label :email_address, 'Email'
-      = form.email_field :email_address, class: "form-control", required: true, autofocus: true, autocomplete: "email"
+.login-container
+  .sticky-note.sticky-note--login
+    .sticky-note__shadow
+    = form_with(url: books.session_path, scope: :books_session, class: 'sticky-note__content') do |form|
+      h3.login-title Sign in
 
-    .form-group
-      = form.label :password
-      = form.password_field :password, class: "form-control", required: true, autocomplete: "current-password"
+      .form-group
+        = form.label :email_address, 'Email'
+        = form.email_field :email_address, class: "form-control", required: true, autofocus: true, autocomplete: "email"
 
-    .form-group
-      = form.submit "Sign in", class: "btn btn-primary"
+      .form-group
+        = form.label :password
+        = form.password_field :password, class: "form-control", required: true, autocomplete: "current-password"
+
+      .form-group.sticky-note__actions
+        = form.submit "Sign in", class: "btn"
