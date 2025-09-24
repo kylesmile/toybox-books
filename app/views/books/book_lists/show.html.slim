@@ -5,9 +5,6 @@
 
   h1 Books #{@book_list.name}
 
-/ = turbo_frame_tag @book_list, src: new_book_list_entry_path(@book_list)
-  = render template: 'books/book_list_entries/new'
-
 table.table.table--top-of-page class=(@book_list.read? ? 'table--with-gutter' : '')
   thead
     tr
@@ -15,8 +12,10 @@ table.table.table--top-of-page class=(@book_list.read? ? 'table--with-gutter' : 
         th.gutter-column Date Read
       th Title
       th Author
-      th
-  tbody
+      th.table__actions
+        = link_to "+ Add", new_book_list_entry_path(@book_list), data: { turbo_stream: true }
+
+  tbody#book_list_table
     - if @entries.any?
         - @entries.each do |entry|
           tr

@@ -1,0 +1,16 @@
+= turbo_stream.prepend "book_list_table" do
+    tr#new_book_list_entry
+      td.table__actions
+        = simple_form_for @entry, url: book_list_entries_path(@book_list), class: 'flex items-end gap-md' do |f|
+          = f.submit 'Save'
+          = f.simple_fields_for(@entry.book) do |ff|
+            = ff.hidden_field :user_id
+            = turbo_stream.prepend "new_book_list_entry" do
+              td
+                = ff.input :title, form: f.id
+              td
+                = ff.input :author, form: f.id
+          - if @book_list.read?
+            = turbo_stream.prepend "new_book_list_entry" do
+              td.gutter-column
+                = f.input :read_at, label: 'Date Read', value: Time.zone.today, form: f.id

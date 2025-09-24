@@ -97,11 +97,30 @@ p {
   flex-grow: 1;
 }
 
+.form-control {
+  font-size: var(--normal-font-size);
+
+  border: none;
+  background: none;
+
+  border-bottom: 1px solid var(--color-normal-text);
+
+  padding: 0;
+}
+
 .table {
   width: 100%;
 
   -webkit-border-vertical-spacing: 0;
   -webkit-border-horizontal-spacing: 0;
+
+  .form-label {
+    display: none;
+  }
+
+  .form-control {
+    width: 100%;
+  }
 
   th, td {
     text-align: left;

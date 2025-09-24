@@ -23,7 +23,7 @@ module Books
       if @book_list.save
         redirect_to books_book_list_path(@book_list), notice: "Book list was successfully created."
       else
-        render :new, status: :unprocessable_entity
+        render :new, status: :unprocessable_content
       end
     end
 

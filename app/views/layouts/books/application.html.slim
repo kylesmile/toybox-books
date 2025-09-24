@@ -14,10 +14,8 @@ html data-theme-mode="light"
       .header-gutter
       .header-main
         = yield :header
-      / - if authenticated?
+      - if authenticated?
         = button_to "Log out", session_path, method: :delete, class: 'btn'
-      / - else
-        = link_to "Log in", new_session_path
     .paper__content
       .content-gutter
       .content-main

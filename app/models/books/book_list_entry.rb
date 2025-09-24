@@ -1,6 +1,6 @@
 module Books
   class BookListEntry < ApplicationRecord
-    before_create :find_existing_book
+    before_validation :find_existing_book
     after_create :broadcast_book_list_update
 
     belongs_to :book, class_name: "Books::Book"
@@ -26,6 +26,8 @@ module Books
     private
 
     def find_existing_book
+      return unless new_record?
+
       existing_book = user.books.find_by(title: book.title, author: book.author)
       self.book = existing_book if existing_book
     end
