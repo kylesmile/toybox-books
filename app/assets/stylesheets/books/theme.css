@@ -43,7 +43,7 @@ p {
 
 .paper__header {
   height: var(--header-height);
-  border-bottom: 2px solid var(--color-horizontal-rule);
+  box-shadow: 0 2px 0 var(--color-horizontal-rule);
 
   display: flex;
   gap: var(--gutter-gap);
