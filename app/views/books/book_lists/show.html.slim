@@ -5,6 +5,13 @@
 
   h1 Books #{@book_list.name}
 
+  = form_with url: import_book_list_entries_path(@book_list) do |f|
+    .form-group
+      = f.label :import, 'Choose file'
+      = f.file_field :import, class: "form-control", accept: 'text/csv,.csv'
+    .form-group
+      = f.submit "Import", class: "btn"
+
 table.table.table--top-of-page class=(@book_list.read? ? 'table--with-gutter' : '')
   thead
     tr

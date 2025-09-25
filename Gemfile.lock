@@ -3,6 +3,7 @@ PATH
   specs:
     books (0.1.0)
       bcrypt (~> 3.1)
+      csv
       rails (>= 8.0.2)
       simple_form
       slim
@@ -90,6 +91,7 @@ GEM
     concurrent-ruby (1.3.5)
     connection_pool (2.5.0)
     crass (1.0.6)
+    csv (3.3.5)
     date (3.4.1)
     diff-lcs (1.6.1)
     drb (2.2.1)

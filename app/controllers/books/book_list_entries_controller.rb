@@ -1,3 +1,5 @@
+require 'csv'
+
 module Books
   class BookListEntriesController < ApplicationController
     before_action :set_book_list
@@ -20,6 +22,37 @@ module Books
       end
     end
 
+    def import
+      user = @book_list.user
+
+      books_attributes = []
+      book_list_entries_attributes = []
+
+      CSV.foreach(params.expect(:import), headers: true) do |row|
+        title = row['title']
+        author = row['author']
+        date = Time.zone.parse(row['date'])
+
+        books_attributes << { title:, author: }
+        book_list_entries_attributes << { read_at: date, title:, author: }
+      end
+
+      user.books.upsert_all(books_attributes, unique_by: %i[ title author user_id ])
+
+      books_data = user.books.pluck(:author, :title, :id).to_h { [it[0..1], it[2]] }
+
+      book_list_entries_attributes.each do |entry_attributes|
+        author = entry_attributes.delete(:author)
+        title = entry_attributes.delete(:title)
+        book_id = books_data[[author, title]]
+        entry_attributes[:book_id] = book_id
+      end
+
+      @book_list.book_list_entries.insert_all(book_list_entries_attributes)
+
+      redirect_to book_list_path(@book_list)
+    end
+
     def destroy
       @entry.destroy
       redirect_to book_list_path(@book_list)
@@ -36,7 +69,7 @@ module Books
     end
 
     def entry_params
-      params.expect(book_list_entry: [:read_at, { book: [:title, :author, :user_id] }])
+      params.expect(book_list_entry: [ :read_at, { book: [ :title, :author, :user_id ] } ])
     end
   end
 end
