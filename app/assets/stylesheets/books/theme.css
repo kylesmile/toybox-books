@@ -8,10 +8,11 @@
   --descender-height: 0.25lh;
   --leading: 0.5lh;
 
-  --gutter-width: 10rem;
-  --header-height: 10rem;
+  --gutter-width: 12rem;
+  --header-height: 12rem;
 
   --space-sm: 4px;
+  --space-md: 8px;
 
   --vertical-rule-width: 3px;
   --vertical-rule: var(--vertical-rule-width) solid var(--color-vertical-rule);
@@ -25,6 +26,8 @@ body {
   color: var(--color-normal-text);
 
   font-size: var(--normal-font-size);
+
+  line-height: 1.5;
 }
 
 p {
@@ -79,7 +82,7 @@ p {
 }
 
 .paper__content {
-  --total-line-height: calc(1lh + var(--leading));
+  --total-line-height: 1lh;
   background: repeating-linear-gradient(
     transparent,
     transparent calc(var(--total-line-height) - 2px),
@@ -98,6 +101,8 @@ p {
 
   width: var(--gutter-width);
   border-right: var(--vertical-rule);
+
+  flex-shrink: 0;
 }
 
 .content-main {
@@ -105,6 +110,8 @@ p {
 
   border-left: var(--vertical-rule);
   flex-grow: 1;
+  flex-shrink: 1;
+  overflow-x: visible;
 }
 
 .form-group {
@@ -142,8 +149,9 @@ p {
 
   th, td {
     text-align: left;
-    padding: var(--leading) var(--space-sm) 0;
+    padding: 0 var(--space-md);
     border: none;
+    vertical-align: top;
   }
 
   th {
@@ -151,11 +159,13 @@ p {
   }
 
   &.table--with-gutter {
-    margin-left: calc(-1 * (var(--gutter-width) + var(--vertical-rule-width) * 2 + var(--gutter-gap)));
+    --gutter-offset: calc(-1 * (var(--gutter-width) + var(--vertical-rule-width) * 2 + var(--gutter-gap)));
+    margin-left: var(--gutter-offset);
+    width: calc(100% - var(--gutter-offset));
   }
 
   &.table--top-of-page {
-    margin-top: calc(-1 * (1lh + var(--leading) + var(--descender-height) * 0.5));
+    margin-top: -1lh;
 
     th {
       padding-bottom: calc(var(--descender-height) * 0.5);
@@ -169,6 +179,6 @@ p {
   .gutter-column {
     width: calc(var(--gutter-width) + var(--vertical-rule-width) * 2 + var(--gutter-gap));
     text-align: right;
-    padding-right: calc(var(--vertical-rule-width) * 2 + var(--gutter-gap) + var(--space-sm));
+    padding-right: calc(var(--vertical-rule-width) * 2 + var(--gutter-gap) + var(--space-md));
   }
 }
