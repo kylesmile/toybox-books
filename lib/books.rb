@@ -1,4 +1,5 @@
 require "books/version"
+require "books/subdomain"
 require "books/engine"
 
 module Books
