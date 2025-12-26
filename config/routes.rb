@@ -1,6 +1,6 @@
 Books::Engine.routes.draw do
-  resources :passwords, param: :token
   resource :session
+  resources :passwords, param: :token
 
   resources :book_lists do
     resources :book_list_entries, as: "entries", only: [ :new, :create, :destroy ] do

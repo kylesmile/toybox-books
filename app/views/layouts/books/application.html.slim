@@ -6,10 +6,15 @@ html data-theme-mode="light"
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag "books/application", "data-turbo-track": "reload"
-    = javascript_importmap_tags
+    = javascript_include_tag "books/application", "data-turbo-track": "reload", type: "module"
     = yield :head
     = turbo_refreshes_with method: :morph
   body.paper
+    - flash.each do |kind, message|
+      .alert.alert--flash class="alert--#{kind}"
+        .alert__message
+          .alert__title = kind.titleize
+          .alert__description = message
     .paper__header
       .header-gutter
       .header-main

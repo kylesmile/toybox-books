@@ -4,10 +4,13 @@ require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
+require "slim"
+require "turbo-rails"
 Bundler.require(*Rails.groups)
 
 module Dummy
   class Application < Rails::Application
+    config.root_host = "example.com"
     config.load_defaults Rails::VERSION::STRING.to_f
 
     # For compatibility with applications that use this config

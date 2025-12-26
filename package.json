@@ -1,5 +1,14 @@
 {
   "name": "books",
   "type": "module",
-  "packageManager": "yarn@4.12.0"
+  "packageManager": "yarn@4.12.0",
+  "scripts": {
+    "build:test": "esbuild app/javascript/books/*.* --bundle --sourcemap --format=esm --outdir=test/dummy/app/assets/builds/books --public-path=/assets"
+  },
+  "devDependencies": {
+    "esbuild": "^0.27.2"
+  },
+  "dependencies": {
+    "@hotwired/turbo-rails": "^8.0.20"
+  }
 }
