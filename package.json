@@ -2,6 +2,7 @@
   "name": "books",
   "type": "module",
   "packageManager": "yarn@4.12.0",
+  "license": "MIT",
   "scripts": {
     "build:test": "esbuild app/javascript/books/*.* --bundle --sourcemap --format=esm --outdir=test/dummy/app/assets/builds/books --public-path=/assets"
   },
