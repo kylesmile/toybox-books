@@ -17,9 +17,10 @@ html data-theme-mode="light"
           .alert__description = message
     .paper__header
       .header-gutter
+        = yield :header_gutter
       .header-main
         = yield :header
-      / - if authenticated?
+      - if authenticated?
         = button_to "Log out", session_path, method: :delete, class: 'btn'
     .paper__content
       .content-gutter
@@ -28,9 +29,9 @@ html data-theme-mode="light"
     dialog#confirm.sticky-note.sticky-note__modal
       .sticky-note__shadow
       .sticky-note__content
-        h3#confirm-title Replaced by `data-turbo-confirm` attribute
-        #confirm-body
+        h3.sticky-note__title#confirm-title Replaced by `data-turbo-confirm` attribute
+        .sticky-note__body#confirm-body
           p Are you sure?
         .sticky-note__actions
-          button.confirm-cancel Cancel
-          button#confirm-accept Yes, I'm sure
+          button.btn.confirm-cancel Cancel
+          button.btn#confirm-accept Yes, I'm sure

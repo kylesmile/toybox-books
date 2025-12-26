@@ -1,7 +1,9 @@
 = turbo_stream_from @book_list
 
+= content_for :header_gutter do
+  = link_to "Back to Lists", book_lists_path
+
 = content_for :header do
-  / = link_to "Back to Lists", book_lists_path, class: "btn btn-secondary mb-4"
 
   h1 Books #{@book_list.name}
 
@@ -31,7 +33,9 @@ table.table.table--top-of-page class=(@book_list.read? ? 'table--with-gutter' : 
             td = entry.book.title
             td = entry.book.author
             td.table__actions
-              = button_to "Remove", book_list_entry_path(@book_list, entry), method: :delete, class: "btn btn-sm btn-danger", data: { turbo_confirm: "Are you sure?" }
+              = button_to "Remove", book_list_entry_path(@book_list, entry), method: :delete, class: "btn btn-sm btn-danger", data: {\
+                  turbo_confirm: "Delete reading list entry?",
+                  confirm_details: "This will remove the entry for <i>#{entry.book.title}</i> by #{entry.book.author}#{@book_list.read? ? " on #{l(entry.read_at.to_date, format: :semi_short, scope: :books)}" : ""} from your #{@book_list.name} list."}
     - else
       tr
         - if @book_list.read?
