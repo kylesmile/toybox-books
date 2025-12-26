@@ -4,11 +4,7 @@
 one:
   email_address: one@example.com
   password_digest: <%= password_digest %>
-  created_at: <%= Time.zone.now %>
-  updated_at: <%= Time.zone.now %>
 
 two:
   email_address: two@example.com
   password_digest: <%= password_digest %>
-  created_at: <%= Time.zone.now %>
-  updated_at: <%= Time.zone.now %>

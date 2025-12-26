@@ -7,7 +7,8 @@
     "build:test": "esbuild app/javascript/books/*.* --bundle --sourcemap --format=esm --outdir=test/dummy/app/assets/builds/books --public-path=/assets"
   },
   "devDependencies": {
-    "esbuild": "^0.27.2"
+    "esbuild": "^0.27.2",
+    "playwright": "^1.57.0"
   },
   "dependencies": {
     "@hotwired/turbo-rails": "^8.0.20",

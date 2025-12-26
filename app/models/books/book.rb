@@ -6,6 +6,6 @@ module Books
 
     validates :title, presence: true
     validates :author, presence: true
-    validates :title, uniqueness: { scope: [:author, :user_id] }
+    validates :title, uniqueness: { scope: [ :author, :user_id ] }
   end
 end

@@ -1,0 +1,19 @@
+user_one_to_read:
+  user: one
+  list_type: to_read
+  name: To Read
+
+user_one_read:
+  user: one
+  list_type: read
+  name: Read
+
+user_two_to_read:
+  user: two
+  list_type: to_read
+  name: To Read
+
+user_two_read:
+  user: two
+  list_type: read
+  name: Read
