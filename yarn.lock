@@ -211,11 +211,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@rolemodel/turbo-confirm@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "@rolemodel/turbo-confirm@npm:2.2.0"
+  checksum: 10c0/76ecad6a2f485ce820ceec98c030e108ef044e5b191003495e32660561a9d4283788971e7c7a308ee1b9eba61f3dfa0cf9d9fb19052f6dcbbe13669c6c3a4238
+  languageName: node
+  linkType: hard
+
 "books@workspace:.":
   version: 0.0.0-use.local
   resolution: "books@workspace:."
   dependencies:
     "@hotwired/turbo-rails": "npm:^8.0.20"
+    "@rolemodel/turbo-confirm": "npm:^2.2.0"
     esbuild: "npm:^0.27.2"
   languageName: unknown
   linkType: soft
