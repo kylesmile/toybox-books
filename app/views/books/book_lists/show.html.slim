@@ -27,7 +27,7 @@ table.table.table--top-of-page class=(@book_list.read? ? 'table--with-gutter' : 
         - @entries.each do |entry|
           tr
             - if @book_list.read?
-              td.gutter-column = l(entry.read_at.to_date, format: :semi_short)
+              td.gutter-column = l(entry.read_at.to_date, format: :semi_short, scope: :books)
             td = entry.book.title
             td = entry.book.author
             td.table__actions

@@ -1,4 +1,5 @@
 en:
-  date:
-    formats:
-      semi_short: "%b %d, %Y"
+  books:
+    date:
+      formats:
+        semi_short: "%b %d, %Y"
