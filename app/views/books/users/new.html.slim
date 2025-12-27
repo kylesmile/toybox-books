@@ -1,0 +1,22 @@
+.login-container
+  .sticky-note.sticky-note--login
+    .sticky-note__shadow
+    = form_with(url: sign_up_path, scope: :user, class: 'sticky-note__content') do |form|
+      h3.sticky-note__title Create Account
+
+      .sticky-note__body
+        .form-group
+          = form.label :email_address, 'Email'
+          = form.email_field :email_address, class: "form-control", required: true, autofocus: true, autocomplete: "email"
+
+        .form-group
+          = form.label :password
+          = form.password_field :password, class: "form-control", required: true, autocomplete: "new-password"
+
+        .form-group
+          = form.label :password_confirmation, "Confirm password"
+          = form.password_field :password_confirmation, class: "form-control", required: true, autocomplete: "new-password"
+
+      .form-group.sticky-note__actions
+        = form.submit "Sign up", class: "btn"
+        = link_to "Sign in", new_session_path

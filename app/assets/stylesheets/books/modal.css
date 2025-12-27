@@ -10,8 +10,14 @@
   background: transparent;
 
   &.sticky-note--login {
-    width: 350px;
-    height: 350px;
+    width: 400px;
+    height: 400px;
+
+    .sticky-note__body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
   }
 
   &.stick-note--modal {
