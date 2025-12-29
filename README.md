@@ -4,7 +4,7 @@ A simple, minimal reading tracker.
 Use it to track books you want to read or have read. That's about all it does. It's not a social network or a book review site.
 
 ## Usage
-This Rails engine is intended to be used as a guest app in my Toybox multi-app configuration. If you want to install it outside of that, you're on your own.
+This Rails engine is intended to be used as a guest app in my [Toybox multi-app configuration](https://github.com/kylesmile/toybox-host-example). If you want to install it outside of that, you're on your own.
 
 ## Installation
 If you are using the example repository, this engine is installed by default.
