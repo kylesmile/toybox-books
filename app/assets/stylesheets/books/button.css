@@ -3,6 +3,9 @@
   border: 2px solid var(--color-normal-text);
   border-radius: 8px;
 
+  color: var(--color-normal-text);
+  text-decoration: none;
+
   &:disabled, form:invalid &[type="submit"] {
     color: var(--color-faded-text);
     border-color: var(--color-faded-text);

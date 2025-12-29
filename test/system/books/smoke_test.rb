@@ -75,6 +75,18 @@ module Books
         refute_text "The Hobbit"
         refute_text "J.R.R. Tolkien"
       end
+
+      test "delete account" do
+        click_on "Account Settings"
+        click_on "Delete my account"
+
+        assert_content "data will be permanently deleted"
+
+        click_on "I understand, delete my account"
+
+        assert_content "Account deleted"
+        assert_button "Sign in"
+      end
     end
   end
 end

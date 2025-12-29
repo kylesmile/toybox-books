@@ -23,6 +23,7 @@ html data-theme-mode="light"
       .header-right
         - if authenticated?
           = button_to "Log out", session_path, method: :delete, class: 'btn'
+          = link_to "Account Settings", edit_account_path, class: 'fine-print'
         = link_to "Terms of Use", terms_of_use_path, class: "fine-print"
         = link_to "Privacy Policy", privacy_policy_path, class: "fine-print"
     .paper__content

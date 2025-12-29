@@ -1,10 +1,10 @@
-
 .sticky-note {
   position: relative;
   border: none;
   padding: 0;
-  min-width: 300px;
-  min-height: 300px;
+  width: 400px;
+  height: 400px;
+  aspect-ratio: 1;
   overflow: visible;
   box-shadow: 0 0 1px rgb(0 0 0 / 30%);
   background: transparent;
@@ -20,7 +20,7 @@
     }
   }
 
-  &.stick-note--modal {
+  &.sticky-note--modal {
     --animation-length: 350ms;
 
     transition:
@@ -102,6 +102,6 @@
   .sticky-note__actions {
     display: flex;
     justify-content: space-between;
-    gap: var(--space-sm);
+    gap: var(--space-md);
   }
 }

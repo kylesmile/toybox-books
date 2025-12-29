@@ -1,6 +1,6 @@
 module Books
-  class UsersController < ApplicationController
-    allow_unauthenticated_access
+  class AccountsController < ApplicationController
+    allow_unauthenticated_access only: %i[new create]
 
     before_action :require_terms_acceptance, only: :create
 
@@ -17,6 +17,20 @@ module Books
         message = user.errors.messages_for(:beta_access).presence || ["There was a problem creating your account"]
         flash.now[:warning] = message.to_sentence
         render :new, status: :unprocessable_content
+      end
+    end
+
+    def edit
+      @user = Current.user
+    end
+
+    def destroy
+      @user = Current.user
+
+      if @user.destroy
+        redirect_to root_path, notice: "Account deleted"
+      else
+        render :edit, status: :unprocessable_content
       end
     end
 
