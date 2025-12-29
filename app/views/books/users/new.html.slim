@@ -6,17 +6,28 @@
 
       .sticky-note__body
         .form-group
-          = form.label :email_address, 'Email'
+          = form.label :email_address, 'Email', class: "form-label"
           = form.email_field :email_address, class: "form-control", required: true, autofocus: true, autocomplete: "email"
 
         .form-group
-          = form.label :password
+          = form.label :password, class: "form-label"
           = form.password_field :password, class: "form-control", required: true, autocomplete: "new-password"
 
         .form-group
           = form.label :password_confirmation, "Confirm password"
           = form.password_field :password_confirmation, class: "form-control", required: true, autocomplete: "new-password"
 
+        .form-group.form-group--inline
+          = form.checkbox :accept_terms, class: "form-control", required: true
+          = form.label :accept_terms, class: "form-label fine-print" do
+            |> I agree to the
+            = link_to "Terms of Use", terms_of_use_path, target: "_blank"
+            |<> and
+            = link_to "Privacy Policy", privacy_policy_path, target: "_blank"
+            | .
+
       .form-group.sticky-note__actions
         = form.submit "Sign up", class: "btn"
-        = link_to "Sign in", new_session_path
+        .fine-print
+          |> Already have an account?
+          = link_to "Sign in", new_session_path

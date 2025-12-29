@@ -4,20 +4,14 @@ module Books
   class SmokeTest < ApplicationSystemTestCase
     test "sign up" do
       visit books.root_path
-      click_on "Create an account"
-
-      assert_link "Sign in"
-      fill_in "Email", with: "test@example.net"
-      fill_in "Password", with: "password"
-      fill_in "Confirm password", with: "password"
-
       click_on "Sign up"
 
-      assert_text "Sign ups are not enabled for example.net emails during beta"
-
+      assert_link "Sign in"
       fill_in "Email", with: "test@example.com"
       fill_in "Password", with: "password"
       fill_in "Confirm password", with: "password"
+      check "I agree"
+
       click_on "Sign up"
 
       assert_text "Account created successfully"

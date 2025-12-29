@@ -15,4 +15,6 @@
 
       .form-group.sticky-note__actions
         = form.submit "Sign in", class: "btn"
-        = link_to "Create an account", sign_up_path
+        .fine-print
+          |> Don't have an account?
+          = link_to "Sign up", sign_up_path

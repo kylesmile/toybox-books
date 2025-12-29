@@ -1,8 +1,9 @@
 :root {
   --color-vertical-rule: rgb(255 0 0 / 50%);
   --color-horizontal-rule: rgb(0 0 255 / 50%);
-  --color-normal-text: rgb(0 0 0 / 65%);
   --color-heading-text: rgb(0 0 0);
+  --color-normal-text: rgb(0 0 0 / 65%);
+  --color-faded-text: rgb(0 0 0 / 45%);
 
   --normal-font-size: 24px;
   --small-font-size: 16px;
@@ -89,7 +90,7 @@ ul {
   gap: var(--space-sm);
 }
 
-.fine-print-link {
+.fine-print {
   font-size: var(--small-font-size);
   color: var(--color-normal-text);
 }
@@ -131,6 +132,10 @@ ul {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
+
+  &.form-group--inline {
+    flex-direction: row;
+  }
 }
 
 .form-control {

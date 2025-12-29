@@ -2,6 +2,8 @@ module Books
   class UsersController < ApplicationController
     allow_unauthenticated_access
 
+    before_action :require_terms_acceptance, only: :create
+
     def new
     end
 
@@ -16,6 +18,15 @@ module Books
         flash.now[:warning] = message.to_sentence
         render :new, status: :unprocessable_content
       end
+    end
+
+    private
+
+    def require_terms_acceptance
+      return if ActiveModel::Type::Boolean.new.cast(params.dig(:user, :accept_terms))
+
+      flash.now[:warning] = "Please accept the terms"
+      render :new, status: :unprocessable_content
     end
   end
 end

@@ -2,4 +2,9 @@
   background: none;
   border: 2px solid var(--color-normal-text);
   border-radius: 8px;
+
+  &:disabled, form:invalid &[type="submit"] {
+    color: var(--color-faded-text);
+    border-color: var(--color-faded-text);
+  }
 }
