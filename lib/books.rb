@@ -3,5 +3,10 @@ require "books/subdomain"
 require "books/engine"
 
 module Books
-  # Your code goes here...
+  GUEST_INFO = {
+    public: true,
+    title: "Books",
+    description: "A simple reading tracker that isn't a social network.",
+    source_url: "https://github.com/kylesmile/toybox-books"
+  }.freeze
 end
