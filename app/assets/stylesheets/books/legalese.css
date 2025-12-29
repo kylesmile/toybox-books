@@ -1,0 +1,22 @@
+.legalese {
+  padding-inline-start: var(--space-md);
+  padding-inline-end: var(--space-md);
+
+  h2 {
+    padding-block-start: calc(var(--leading) * 2);
+  }
+
+  dt {
+    font-weight: bold;
+    display: inline;
+
+    &::after {
+      content: ': '
+    }
+  }
+
+  dd {
+    display: inline;
+    margin-inline-start: 0;
+  }
+}

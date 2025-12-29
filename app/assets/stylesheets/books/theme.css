@@ -5,6 +5,7 @@
   --color-heading-text: rgb(0 0 0);
 
   --normal-font-size: 24px;
+  --small-font-size: 16px;
   --descender-height: 0.25lh;
   --leading: 0.5lh;
 
@@ -31,7 +32,12 @@ body {
 }
 
 p {
-  padding-top: var(--leading);
+  padding-top: calc(var(--leading) * 2);
+}
+
+ul {
+  margin: 0;
+  padding-block-start: calc(var(--leading) * 2);
 }
 
 .login-container {
@@ -75,6 +81,17 @@ p {
     font-size: 36px;
   }
 
+}
+
+.header-right {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.fine-print-link {
+  font-size: var(--small-font-size);
+  color: var(--color-normal-text);
 }
 
 .paper__content {

@@ -20,8 +20,11 @@ html data-theme-mode="light"
         = yield :header_gutter
       .header-main
         = yield :header
-      - if authenticated?
-        = button_to "Log out", session_path, method: :delete, class: 'btn'
+      .header-right
+        - if authenticated?
+          = button_to "Log out", session_path, method: :delete, class: 'btn'
+        = link_to "Terms of Use", terms_of_use_path, class: "fine-print-link"
+        = link_to "Privacy Policy", privacy_policy_path, class: "fine-print-link"
     .paper__content
       .content-gutter
       .content-main
