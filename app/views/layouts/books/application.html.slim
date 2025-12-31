@@ -16,20 +16,22 @@ html data-theme-mode="light"
           .alert__title = kind.titleize
           .alert__description = message
     .paper__header
-      .header-gutter
-        = yield :header_gutter
+      .header-left
+        = yield :header_left
       .header-main
         = yield :header
       .header-right
+        = yield :header_right
         - if authenticated?
           = button_to "Log out", session_path, method: :delete, class: 'btn'
-          = link_to "Account Settings", edit_account_path, class: 'fine-print'
-        = link_to "Terms of Use", terms_of_use_path, class: "fine-print"
-        = link_to "Privacy Policy", privacy_policy_path, class: "fine-print"
     .paper__content
-      .content-gutter
       .content-main
         = yield
+    .paper__footer.fine-print
+        - if authenticated?
+          = link_to "Account Settings", edit_account_path
+        = link_to "Terms of Use", terms_of_use_path
+        = link_to "Privacy Policy", privacy_policy_path
     dialog#confirm.sticky-note.sticky-note__modal
       .sticky-note__shadow
       .sticky-note__content

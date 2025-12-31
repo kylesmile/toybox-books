@@ -1,11 +1,10 @@
 = turbo_stream_from @book_list
 
-= content_for :header_gutter do
-  = link_to "Back to Lists", book_lists_path
+= content_for :header_left do
+  = link_to "Home", root_path
 
 = content_for :header do
-
-  h1 Books #{@book_list.name}
+  h1 = @book_list.name
 
   / = form_with url: import_book_list_entries_path(@book_list) do |f|
     .form-group
@@ -14,31 +13,22 @@
     .form-group
       = f.submit "Import", class: "btn"
 
-table.table.table--top-of-page class=(@book_list.read? ? 'table--with-gutter' : '')
-  thead
-    tr
+= link_to "+ Add Book", new_book_list_entry_path(@book_list), data: { turbo_stream: true }
+.book-list#book_list
+  - if @entries.none?
+    | No books in this list yet.
+  - @entries.each do |entry|
+    .book-list-entry
       - if @book_list.read?
-        th.gutter-column Date Read
-      th Title
-      th Author
-      th.table__actions
-        = link_to "+ Add", new_book_list_entry_path(@book_list), data: { turbo_stream: true }
-
-  tbody#book_list_table
-    - if @entries.any?
-        - @entries.each do |entry|
-          tr
-            - if @book_list.read?
-              td.gutter-column = l(entry.read_at.to_date, format: :semi_short, scope: :books)
-            td = entry.book.title
-            td = entry.book.author
-            td.table__actions
-              = button_to "Remove", book_list_entry_path(@book_list, entry), method: :delete, class: "btn btn-sm btn-danger", data: {\
-                  turbo_confirm: "Delete reading list entry?",
-                  confirm_details: "This will remove the entry for <i>#{entry.book.title}</i> by #{entry.book.author}#{@book_list.read? ? " on #{l(entry.read_at.to_date, format: :semi_short, scope: :books)}" : ""} from your #{@book_list.name} list."}
-    - else
-      tr
-        - if @book_list.read?
-          td
-        td colspan="2"
-          | No books in this list yet.
+        .book-list-entry__item
+          = l(entry.read_at.to_date, format: :semi_short, scope: :books)
+      .book-list-entry__group
+        .book-list-entry__item.book-list-entry__title
+          = entry.book.title
+        .book-list-entry__item
+          |<> by
+          = entry.book.author
+      .book-list-entry__item.book-list-entry__actions
+        = button_to "Remove", book_list_entry_path(@book_list, entry), method: :delete, class: "btn btn-sm btn-danger", data: {\
+          turbo_confirm: "Delete reading list entry?",
+          confirm_details: "This will remove the entry for <i>#{entry.book.title}</i> by #{entry.book.author}#{@book_list.read? ? " on #{l(entry.read_at.to_date, format: :semi_short, scope: :books)}" : ""} from your #{@book_list.name} list."}

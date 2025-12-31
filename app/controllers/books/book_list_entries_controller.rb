@@ -8,7 +8,7 @@ module Books
     def new
       @entry = @book_list.book_list_entries.build
       @entry.build_book(user: @book_list.user)
-      render turbo_stream: turbo_stream.prepend("book_list_table", partial: "form")
+      render turbo_stream: turbo_stream.prepend("book_list", partial: "form")
     end
 
     def create
@@ -18,7 +18,7 @@ module Books
         head :created
       else
         Rails.logger.info { @entry.errors.full_messages }
-        render turbo_stream: turbo_stream.replace("new_book_list_entry_row", partial: "form")
+        render turbo_stream: turbo_stream.replace("new_book_list_entry", partial: "form")
       end
     end
 

@@ -1,0 +1,38 @@
+.book-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1lh;
+}
+
+.book-list-entry {
+  .book-list-entry__title {
+    font-style: italic;
+  }
+
+  .book-list-entry__actions {
+    display: inline-flex;
+  }
+
+  .book-list-entry__group .book-list-entry__item {
+    display: inline;
+  }
+}
+
+.new-book-list-entry {
+  padding-inline-start: var(--space-md);
+  padding-inline-end: var(--space-md);
+  --form-border-width: 2px;
+  border: var(--form-border-width) solid var(--color-faded-text);
+  border-radius: var(--space-md);
+  margin-block-start: calc(-2 * var(--form-border-width));
+
+  .form-group {
+    gap: 0;
+  }
+
+  .form-group:not(:first-of-type) {
+    padding-block-start: var(--text-padding-start);
+    padding-block-end: var(--text-padding-end);
+  }
+}
