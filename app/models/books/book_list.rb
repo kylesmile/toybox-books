@@ -11,5 +11,9 @@ module Books
     validates :name, uniqueness: { scope: :user_id }
 
     enum :list_type, read: "read", to_read: "to_read"
+
+    def stats
+      Stats.new(self)
+    end
   end
 end

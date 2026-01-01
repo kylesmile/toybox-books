@@ -36,3 +36,19 @@
     padding-block-end: var(--text-padding-end);
   }
 }
+
+.chart-wrapper {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+
+.chart-container {
+  flex-grow: 1;
+  flex-shrink: 1;
+  position: relative;
+}
+
+.chart {
+  position: absolute;
+}

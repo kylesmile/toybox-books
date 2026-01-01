@@ -1,7 +1,11 @@
 = turbo_stream_from @book_list
 
 = content_for :header_left do
-  = link_to "Home", root_path
+  div
+    = link_to "Home", root_path
+  - if @book_list.read?
+    div
+      = link_to "Stats", book_list_stats_path(@book_list)
 
 = content_for :header do
   h1 = @book_list.name
