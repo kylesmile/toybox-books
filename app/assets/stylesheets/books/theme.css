@@ -91,7 +91,7 @@ h2 {
       var(--color-horizontal-rule) calc(1lh - 2px),
       var(--color-horizontal-rule) 1lh
     ) content-box,
-    url(/books/paper.svg),
+    left 0 / 500px 500px url(/books/paper.svg),
     white;
 
   display: flex;
