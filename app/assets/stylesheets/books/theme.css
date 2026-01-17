@@ -1,6 +1,5 @@
 :root {
-  --color-vertical-rule: rgb(255 0 0 / 50%);
-  --color-horizontal-rule: rgb(0 0 200 / 50%);
+  --color-horizontal-rule: rgb(0 0 120 / 30%);
   --color-heading-text: rgb(0 0 0);
   --color-normal-text: rgb(0 0 0 / 65%);
   --color-faded-text: rgb(0 0 0 / 45%);
@@ -45,6 +44,11 @@ body {
   line-height: 1.5;
 }
 
+.application-container {
+  display: flex;
+  flex-direction: column;
+}
+
 p {
   padding-block-start: var(--text-padding-start);
   padding-block-end: var(--text-padding-end);
@@ -59,12 +63,6 @@ ul {
     margin-block-start: calc(-1 * var(--text-padding-end));
     padding-block-start: 0;
   }
-}
-
-h1 {
-  font-size: calc(var(--normal-font-size) * 1.75);
-  padding-block-start: var(--descender-height);
-  color: var(--color-heading-text);
 }
 
 h2 {
@@ -92,7 +90,7 @@ h2 {
       transparent calc(1lh - 2px),
       var(--color-horizontal-rule) calc(1lh - 2px),
       var(--color-horizontal-rule) 1lh
-    ),
+    ) content-box,
     url(/books/paper.svg),
     white;
 
@@ -105,20 +103,36 @@ h2 {
 
     display: flex;
     gap: var(--space-sm);
+    padding-left: var(--space-large);
+    padding-right: var(--space-large);
   }
 
   .paper__header {
     margin-top: 1lh;
     height: var(--header-height);
     display: flex;
-    justify-content: space-between;
-    gap: var(--space-sm);
+    flex-direction: column;
+    padding-left: var(--space-large);
+    padding-right: var(--space-large);
   }
 
   .paper__footer {
     display: flex;
     justify-content: space-between;
     gap: var(--space-sm);
+    padding-left: var(--space-large);
+    padding-right: var(--space-large);
+    margin-bottom: calc(1.5 * var(--normal-font-size));
+  }
+}
+
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+
+  .main-nav__primary-links {
+    display: flex;
+    gap: var(--space-md);
   }
 }
 
@@ -127,13 +141,21 @@ h2 {
 
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
 }
 
-.header-right {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
+.page-title {
+  font-size: calc(var(--normal-font-size) * 1.75);
+  color: var(--color-heading-text);
+
+  @supports (text-box-edge: cap alphabetic) {
+    text-box-edge: cap alphabetic;
+    text-box-trim: trim-end;
+  }
+
+  @supports not (text-box-edge: cap alphabetic) {
+    margin-bottom: calc(-1 * var(--descender-height));
+  }
 }
 
 .fine-print {

@@ -1,14 +1,14 @@
 = turbo_stream_from @book_list
 
-= content_for :header_left do
+= content_for :primary_links do
   div
     = link_to "Home", root_path
   - if @book_list.read?
     div
       = link_to "Stats", book_list_stats_path(@book_list)
 
-= content_for :header do
-  h1 = @book_list.name
+= content_for :page_title do
+  = @book_list.name
 
   / = form_with url: import_book_list_entries_path(@book_list) do |f|
     .form-group

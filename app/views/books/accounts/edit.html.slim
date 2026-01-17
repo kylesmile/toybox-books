@@ -1,7 +1,7 @@
-= content_for :header_left do
+= content_for :primary_links do
   = link_to "Home", root_path
-= content_for :header do
-  h1 Account Settings
+= content_for :page_title do
+  | Account Settings
 = button_to "Delete my account",
   account_path,
   method: :delete,
