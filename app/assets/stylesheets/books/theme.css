@@ -1,6 +1,6 @@
 :root {
   --color-vertical-rule: rgb(255 0 0 / 50%);
-  --color-horizontal-rule: rgb(0 0 255 / 50%);
+  --color-horizontal-rule: rgb(0 0 200 / 50%);
   --color-heading-text: rgb(0 0 0);
   --color-normal-text: rgb(0 0 0 / 65%);
   --color-faded-text: rgb(0 0 0 / 45%);
@@ -15,6 +15,7 @@
 
   --space-sm: calc(var(--base-unit) / 2);
   --space-md: var(--base-unit);
+  --space-large: calc(var(--base-unit) * 2);
 
   --text-padding-start: 0.9lh;
   --text-padding-end: 0.1lh;
@@ -82,10 +83,9 @@ h2 {
 .paper {
   flex-grow: 1;
 
-  padding-left: var(--space-md);
-  padding-right: var(--space-md);
+  padding-left: var(--space-large);
+  padding-right: var(--space-large);
   margin: 0;
-  --total-line-height: 1lh;
   background:
     repeating-linear-gradient(
       transparent,
