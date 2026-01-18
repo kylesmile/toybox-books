@@ -85,7 +85,7 @@ h2 {
   padding-right: var(--space-large);
   margin: 0;
   background:
-    repeating-linear-gradient(
+    left 0 / auto 1lh repeating-linear-gradient(
       transparent,
       transparent calc(1lh - 2px),
       var(--color-horizontal-rule) calc(1lh - 2px),
